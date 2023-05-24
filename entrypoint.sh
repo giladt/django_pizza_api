@@ -14,6 +14,7 @@ fi
 python manage.py flush --no-input
 python manage.py migrate
 echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('$SQL_USER', '$SQL_EMAIL', '$SQL_PASSWORD')" | python manage.py shell
+python manage.py loaddata ./fixtures/data.json
 
 
 exec "$@"

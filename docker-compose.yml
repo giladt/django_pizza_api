@@ -14,11 +14,13 @@ services:
 
   db:
     image: postgres:13-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
+    restart: always
     environment:
+      - "DATABASE_HOST=127.0.0.1"
       - "POSTGRES_USER=pizza_admin"
       - "POSTGRES_PASSWORD=pizza"
       - "POSTGRES_DB=pizza_order_management_db"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
 volumes:
   postgres_data:

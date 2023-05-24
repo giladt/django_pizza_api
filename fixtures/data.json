@@ -1,0 +1,86 @@
+[
+  {
+    "model": "api.client", 
+    "pk": 1, 
+    "fields": {
+      "client_name": "Jane Doe", 
+      "client_address": "Berlin", 
+      "client_phone": "+49 176 123 45 678"
+    }
+  }, {
+    "model": "api.client", 
+    "pk": 2, "fields": {
+      "client_name": "John Doe", 
+      "client_address": "Hamburg", 
+      "client_phone": "+49 151 123 45 789"
+    }
+  }, {
+    "model": "api.flavour", 
+    "pk": 1, 
+    "fields": {
+      "flavour_name": "Margarita"
+    }
+  }, {
+      "model": "api.flavour", 
+      "pk": 2, 
+      "fields": {
+        "flavour_name": "Marinara"
+      }
+    }, 
+    {
+      "model": "api.flavour", 
+      "pk": 3, 
+      "fields": {
+        "flavour_name": "Salami"
+      }
+    }, 
+    {
+      "model": "api.size", 
+      "pk": 1, 
+      "fields": {
+        "size_name": "Small"
+      }
+    }, 
+    {
+      "model": "api.size", 
+      "pk": 2, 
+      "fields": {
+        "size_name": "Medium"
+      }
+    }, 
+    {
+      "model": "api.size", 
+      "pk": 3, 
+      "fields": {
+        "size_name": "Large"
+      }
+    }, 
+    {
+      "model": "api.orderstatus", 
+      "pk": 1, 
+      "fields": {
+        "order_status_name": "Pending"
+      }
+    }, 
+    {
+      "model": "api.orderstatus", 
+      "pk": 2, 
+      "fields": {
+        "order_status_name": "Processing"
+      }
+    }, 
+    {
+      "model": "api.orderstatus", 
+      "pk": 3, 
+      "fields": {
+        "order_status_name": "Delivering"
+      }
+    }, 
+    {
+      "model": "api.orderstatus", 
+      "pk": 4, 
+      "fields": {
+        "order_status_name": "Eating"
+      }
+    }]
+    
