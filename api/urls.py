@@ -23,9 +23,10 @@ router = routers.DefaultRouter()
 router.register(r"client", ClientViewSet)
 router.register(r"flavour", FlavourViewSet)
 router.register(r"size", SizeViewSet)
-router.register(r"status", StatusViewSet)
-router.register(r"items", ItemsViewSet)
+router.register(r"order_status", OrderStatusViewSet)
+router.register(r"item", ItemViewSet)
 router.register(r"order", OrderViewSet)
+router.register(r"order_item", OrderItemsViewSet)
 
 
 urlpatterns = [

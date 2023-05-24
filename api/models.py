@@ -25,41 +25,49 @@ class Size(models.Model):
         return self.size_name
 
 
-class Status(models.Model):
-    status_name = models.CharField(max_length=32)
+class OrderStatus(models.Model):
+    order_status_name = models.CharField(max_length=32)
 
     def __str__(self):
-        return self.status_name
-
-
-class Order(models.Model):
-    client = models.ForeignKey(Client, models.CASCADE, related_name="client")
-    order_time = models.DateTimeField(auto_now_add=True)
-    order_update_time = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return str(self.client) + " (" + str(self.order_time) + ")"
+        return self.order_status_name
 
 
 class Item(models.Model):
-    flavour = models.ForeignKey(Flavour, models.CASCADE, related_name="flavour")
-    size = models.ForeignKey(Size, models.CASCADE, related_name="size")
-    status = models.ForeignKey(Status, models.CASCADE, related_name="status", default=1)
-    order = models.ForeignKey(Order, models.CASCADE, related_name="order")
+    flavour = models.ForeignKey(Flavour, models.CASCADE, related_name="flavour", default=None)
+    size = models.ForeignKey(Size, models.CASCADE, related_name="size", default=None)
     amount = models.IntegerField(
         name="amount",
         validators=[MaxValueValidator(100), MinValueValidator(1)],
         default=1,
     )
+    isReady = models.BooleanField(name="is_ready", default=False)
 
     class Meta:
-        unique_together = ("flavour", "size", "order")
+        unique_together = ("flavour", "size")
 
     def __str__(self) -> str:
         return (
-            str(self.order.client.client_name)
+            self.flavour.flavour_name
             + " "
-            + self.flavour.flavour_name
+            + str(self.size.size_name)
             + " x"
             + str(self.amount)
         )
+
+
+class Order(models.Model):
+    order_time = models.DateTimeField(auto_now_add=True)
+    order_update_time = models.DateTimeField(auto_now=True)
+    client = models.ForeignKey(Client, models.CASCADE, related_name="client", default=None)
+    order_status = models.ForeignKey(OrderStatus, models.CASCADE, related_name="order_status", default=None)
+
+    def __str__(self):
+        return str(self.client) + " (" + str(self.order_time) + ")"
+
+
+class OrderItems(models.Model):
+    order = models.ForeignKey(Order, models.CASCADE, related_name="order", default=None)
+    item = models.OneToOneField(Item, models.CASCADE, related_name="item", primary_key=True, default=None)
+
+    class Meta:
+        unique_together = ("order", "item")

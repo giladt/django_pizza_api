@@ -1,3 +1,4 @@
+from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 from .models import *
 
@@ -5,31 +6,39 @@ from .models import *
 class ClientSerializer(ModelSerializer):
     class Meta:
         model = Client
-        fields = ["id", "client_name", "client_address", "client_phone"]
+        fields = ["client_name", "client_address", "client_phone"]
 
 
 class FlavourSerializer(ModelSerializer):
     class Meta:
         model = Flavour
-        fields = ["id", "flavour_name"]
+        fields = ["flavour_name"]
 
 
 class SizeSerializer(ModelSerializer):
     class Meta:
         model = Size
-        fields = ["id", "size_name"]
+        fields = ["size_name"]
 
 
-class StatusSerializer(ModelSerializer):
+class OrderStatusSerializer(ModelSerializer):
     class Meta:
-        model = Status
-        fields = ["id", "status_name"]
+        model = OrderStatus
+        fields = ["order_status_name"]
+
+
+class ItemSerializer(ModelSerializer):
+    class Meta:
+        model = Item
+        fields = [
+            "flavour",
+            "size",
+            "amount",
+            "is_ready",
+        ]
 
 
 class OrderSerializer(ModelSerializer):
-    status = StatusSerializer(many=False)
-    client = ClientSerializer(many=False)
-
     class Meta:
         model = Order
         fields = [
@@ -39,13 +48,8 @@ class OrderSerializer(ModelSerializer):
         ]
 
 
-class ItemsSerializer(ModelSerializer):
+class OrderItemsSerializer(ModelSerializer):
     class Meta:
-        model = Item
-        fields = [
-            "flavour",
-            "size",
-            "status",
-            "order",
-            "amount",
-        ]
+        model = OrderItems
+        depth=2
+        fields = "__all__"
