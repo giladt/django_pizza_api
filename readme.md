@@ -14,19 +14,17 @@ This django-admin api provides endpoints for managing client pizza orders.
 This will install django and postgresql, create `superuser` with the credentials `pizza_admin` (password: `pizza`) and will seed the static tables: client, flavour, size, and status.
 
 ### Environment Variables
-
-<code>
-  SECRET_KEY=`your secret is safe`<br/>
-  DEBUG=1<br/>
-  DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]<br/>
-  SQL_ENGINE=django.db.backends.postgresql<br/>
-  SQL_DATABASE=pizza_order_management_db<br/>
-  SQL_USER=pizza_admin<br/>
-  SQL_EMAIL=admin@pizza.com<br/>
-  SQL_PASSWORD=pizza<br/>
-  SQL_HOST=db<br/>
-  SQL_PORT=5432<br/>
-  DATABASE=postgres<br/>
+SECRET_KEY=`your secret is safe`<br/>
+DEBUG=1<br/>
+DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]<br/>
+SQL_ENGINE=django.db.backends.postgresql<br/>
+SQL_DATABASE=pizza_order_management_db<br/>
+SQL_USER=pizza_admin<br/>
+SQL_EMAIL=admin@pizza.com<br/>
+SQL_PASSWORD=pizza<br/>
+SQL_HOST=db<br/>
+SQL_PORT=5432<br/>
+DATABASE=postgres<br/>
 </code>
 
 ## Endpoints:
@@ -38,28 +36,23 @@ This will install django and postgresql, create `superuser` with the credentials
 |   GET   | /api/client/[int:id]     | Retrieve client by id       |                                                              |
 |  PATCH  | /api/client/[int:id]     | Update client by id         | {client_name: str}                                           |
 | DELETE  | /api/client/[int:id]     | Remove client by id         |                                                              |
-|         |                          |                             |                                                              |
 |   GET   | /api/flavour/            | List all flavours           |                                                              |
 |   GET   | /api/flavour/[int:id]    | Retrieve flavour by id      |                                                              |
 |         |                          |                             |                                                              |
 |   GET   | /api/size/               | List all sizes              |                                                              |
 |   GET   | /api/size/[int:id]       | Retrieve size by id         |                                                              |
-|         |                          |                             |                                                              |
 |   GET   | /api/status              | List all statuses           |                                                              |
 |   GET   | /api/status/[int:id]     | Retrieve status by id       |                                                              |
-|         |                          |                             |                                                              |
 |   GET   | /api/item/               | List all items              |                                                              |
 |  POST   | /api/item/               | Create a new item           | { flavour: int, size: int, amount: int, is_ready: bool }     |
 |   GET   | /api/item/[int:id]       | Retrieve item by id         |                                                              |
 |  PATCH  | /api/item/[int:id]       | Update (order) item by id   | {flavour: int}                                               |
 | DELETE  | /api/item/[int:id]       | Remove item by id           |                                                              |
-|         |                          |                             |                                                              |
 |   GET   | /api/order/              | List all orders             |                                                              |
 |  POST   | /api/order/              | Create a new order          | { client: int, status: int }                                 |
 |   GET   | /api/order/[int:id]      | Retrieve order by id        |                                                              |
 |  PATCH  | /api/order/[int:id]      | Update order by id          | { status: int }                                              |
 | DELETE  | /api/order/[int:id]      | Remove (Client) order by id |                                                              |
-|         |                          |                             |                                                              |
 |   GET   | /api/order_item/         | List all order items        |                                                              |
 |  POST   | /api/order_item/         | Create a new order item     | { order: int, item: int }                                    |
 |   GET   | /api/order_item/[int:id] | Retrieve order item by id   |                                                              |
@@ -67,3 +60,4 @@ This will install django and postgresql, create `superuser` with the credentials
 | DELETE  | /api/order_item/[int:id] | Remove order item by id     |                                                              |
 
 # Relations
+![image](https://github.com/giladt/django_pizza_api/assets/2517870/8e704e22-6cd6-480f-a177-8724ce65d803)
