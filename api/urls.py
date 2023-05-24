@@ -24,6 +24,8 @@ router.register(r"client", ClientViewSet)
 router.register(r"flavour", FlavourViewSet)
 router.register(r"size", SizeViewSet)
 router.register(r"status", StatusViewSet)
+router.register(r"items", ItemsViewSet)
+router.register(r"order", OrderViewSet)
 
 
 urlpatterns = [

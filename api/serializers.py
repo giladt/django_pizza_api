@@ -25,3 +25,27 @@ class StatusSerializer(ModelSerializer):
         model = Status
         fields = ["id", "status_name"]
 
+
+class OrderSerializer(ModelSerializer):
+    status = StatusSerializer(many=False)
+    client = ClientSerializer(many=False)
+
+    class Meta:
+        model = Order
+        fields = [
+            "client",
+            "order_time",
+            "order_update_time",
+        ]
+
+
+class ItemsSerializer(ModelSerializer):
+    class Meta:
+        model = Item
+        fields = [
+            "flavour",
+            "size",
+            "status",
+            "order",
+            "amount",
+        ]
