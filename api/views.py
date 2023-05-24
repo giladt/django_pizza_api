@@ -49,4 +49,71 @@ class ClientViewSet(viewsets.ViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# Create your views here.
+class FlavourViewSet(viewsets.ViewSet):
+    name = "flavour"
+    queryset = Flavour.objects.all()
+
+    def list(self, request):
+        try:
+            allFlavour = Flavour.objects.all()
+        except Exception as e:
+            return Response({"Error": repr(e)}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = FlavourSerializer(allFlavour, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def retrieve(self, request, pk=None):
+        try:
+            flavour = Flavour.objects.get(id=pk)
+        except Exception as e:
+            return Response({"Error": repr(e)}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = FlavourSerializer(flavour)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class SizeViewSet(viewsets.ViewSet):
+    name = "size"
+    queryset = Size.objects.all()
+
+    def list(self, request):
+        try:
+            allSize = Size.objects.all()
+        except Exception as e:
+            return Response({"Error": repr(e)}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = SizeSerializer(allSize, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def retrieve(self, request, pk=None):
+        try:
+            size = Size.objects.get(id=pk)
+        except Exception as e:
+            return Response({"Error": repr(e)}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = SizeSerializer(size)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class StatusViewSet(viewsets.ViewSet):
+    name = "status"
+    queryset = Status.objects.all()
+
+    def list(self, request):
+        try:
+            allStatus = Status.objects.all()
+        except Exception as e:
+            return Response({"Error": repr(e)}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = StatusSerializer(allStatus, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def retrieve(self, request, pk=None):
+        try:
+            orderStatus = Status.objects.get(id=pk)
+        except Exception as e:
+            return Response({"Error": repr(e)}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = StatusSerializer(orderStatus)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+

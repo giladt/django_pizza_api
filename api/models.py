@@ -10,4 +10,23 @@ class Client(models.Model):
         return self.client_name
 
 
-# Create your models here.
+class Flavour(models.Model):
+    flavour_name = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.flavour_name
+
+
+class Size(models.Model):
+    size_name = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.size_name
+
+
+class Status(models.Model):
+    status_name = models.CharField(max_length=32)
+
+    def __str__(self):
+        return self.status_name
+

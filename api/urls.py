@@ -20,6 +20,11 @@ from rest_framework import routers
 from .views import *
 
 router = routers.DefaultRouter()
+router.register(r"client", ClientViewSet)
+router.register(r"flavour", FlavourViewSet)
+router.register(r"size", SizeViewSet)
+router.register(r"status", StatusViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
